@@ -314,7 +314,12 @@ static const void *kStatusBarStyle = &kStatusBarStyle;
 
 - (void) styleBlackOpaque:(CDVInvokedUrlCommand*)command
 {
-    [self setStyleForStatusBar:UIStatusBarStyleLightContent];
+    BOOL isIOS13 = (IsAtLeastiOSVersion(@"13.0"));
+    if(isIOS13) {
+        [self setStyleForStatusBar:UIStatusBarStyleDarkContent];
+    } else {
+        [self setStyleForStatusBar:UIStatusBarStyleBlackOpaque];
+    }
 }
 
 - (void) backgroundColorByName:(CDVInvokedUrlCommand*)command
